@@ -1202,10 +1202,10 @@ class OvercookedGridworld(object):
                         self.log_object_potting(events_infos, new_state, old_soup, soup, obj.name, player_idx)
                         if obj.name == Recipe.ONION:
                             events_infos['potting_onion'][player_idx] = True
-                        
-                        if self.soup_to_be_cooked_at_location(new_state, i_pos):
-                            soup = new_state.get_object(i_pos)
-                            soup.begin_cooking()
+                        if soup.is_full:
+                            if self.soup_to_be_cooked_at_location(new_state, i_pos):
+                                soup = new_state.get_object(i_pos)
+                                soup.begin_cooking()
 
             elif terrain_type == 'S' and player.has_object():
                 obj = player.get_object()
