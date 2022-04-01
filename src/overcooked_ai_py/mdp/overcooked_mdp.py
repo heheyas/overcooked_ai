@@ -1960,7 +1960,7 @@ class OvercookedGridworld(object):
 
         # NOTE: Currently not very efficient, a decent amount of computation repeated here
         num_players = len(overcooked_state.players)
-        final_obs_for_players = tuple(process_for_player(i) for i in range(num_players))
+        final_obs_for_players = tuple(np.transpose(process_for_player(i), (2, 0, 1)) for i in range(num_players))
         return final_obs_for_players
 
     @property
